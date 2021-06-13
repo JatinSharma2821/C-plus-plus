@@ -1,0 +1,176 @@
+/*
+ Time Complexity of an algorithm is basically how the time of running a process varies
+ as input size increases with the function of length of input
+
+example 1
+int a = 0;
+for (int i = 1; i <=n; i++)                            for (int i = 1; i<=n; i++) 
+{														{ for (int j = 1; j <=n; j++)	a+=1;												{ a+=1;}	}
+}
+so i varies as i=1,2,3,4,5,.....n									so j varies as j=1,2,3,4,5,.....n
+so time(t) varies withi (=n)  as-									so j is proptional to n;
+t is directly proptional to n.--- linear                             i varies as i=1,2,3,4,5,.....n
+																	each of i varies with j.. each j is propotional to n
+																	SO, i is propotional to n^2
+																	so (t) is directly protional to n^2-------quadratic
+
+ Space Complexity - Space Complexity of a program quantifies time of running a process as funtion of length of input
+It is directly propotional to  the largest memory occupied by program at a instance during running program.
+
+Consider example 1
+int n;
+cin>> n; ---- 4 bytes
+int val; ---- 4 bytes
+val = 1;
+for (int i = 1; i<= n; i++) ---- i also takes 4 bytes
+{
+	for (int j = 1 ; j <= i; j++)// j goes till value of i only.---- j takes 4 bytes
+	{ 
+		cout<<val++<<" ";//val getting printed and incremented for next execution
+	}cout<<endl;
+
+}
+In this Program - total space aquired = 16 bytes but independent of n;
+So, Space Complexity is constant or we can say it is independent of n.
+
+Consider example - 2
+arr[1] - array having one element = 4 bytes - taking element as int
+arr[2] - 2 element --- 8 bytes	
+	|
+	|	
+arr[n] - n element - n*4 bytes  --- Here we can see that  Space complexity increases with increase in n and is linealy proptional to n
+While running a porgram we consider two things 
+
+
+               		|
+ ------------------------------------
+ Running                         Space/Memory
+ Time							Occupied
+
+ A program having minimum run time and minimum Space/Memory occupied is called Efficient Program.
+
+
+Depending upon Search algorithm , three anotations are defined --
+							|
+	---------------------------------------------------							
+	Worst Case			Average Case				 Best Case
+	(O)						(Θ)-theta                    (omega)
+
+
+Consider an example ------ Book Stack ------- 1 2 3 4 5 6------------ 100
+
+we want to search three boook with labelled in given book stack as
+
+a) x = 200
+b) y = 
+c) z  =  1
+
+
+1. Worst Case - (x)
+Think as if you are finding a book in book-stack of lets say 100 books.
+so the worst you can expect is you have a look at each  of single book in whole stack 
+but stil you donot find book.
+So your time and efforts gets wasted - so you came across 100 books 
+so worst case will be protional of n(in general), 100-in this example
+
+ || Conclusion ---- Worst Case ∝ n ||
+
+2. Best Case - (z)
+You find  desired book at first place only
+So it does not matter wether total books are 10-20-100-100000-or anything
+
+||  Conclusion --- Best Case -- constant --- independent of n---- ||
+
+3. Average Case - 
+Well here we donot know at what place we will be find book 
+so we will individually search for every possible case and 
+then will take their average
+
+for book1 - 1 possible case - 1 (we find desired book at place 1)
+for book2 - 2 possible case - 1,2 (we find desired book at place 1 or 2)
+for book3 - 3 possible case - 1,2,3 (we find desired book at place 1 or 2or 3)
+	|
+	|
+	|
+for book100 - 1oo possible case - 1,2,3....100 (we find desired book at place 1,2,3.....10)	
+
+so average will be total/n = (1 possible case + 2 Possible case.... + 100 Possible case)/n
+						= (1 + 2 + 3+ 4+....+100)/n
+						= (n(n+1)/2)/n
+						= (n+1)/2
+						
+|| Conclusion ----- Average Case Case ∝ n ||
+
+Calculation of Time Complexity(O)
+
+Case 1 Tc - O(n*m)
+for (int i = 1; i <= n ; i++) --- O(n)
+ {
+	 for (int j = 1 ; j <= m; j++ ) --- O(m)
+	 {
+		 cout<<element; 
+	 } 
+}
+
+Case 2 Tc - O(n+m)
+ for (int i = 1; i <= n ; i++) ---- n
+ { cout<<i;}
+for (int j = 1 ; j <= m; j++ ) ----m
+{
+	cout<<element;
+}
+
+Case 3 Tc - O(n*m + m)
+
+for (int i = 1; i <= n ; i++) --- O(n)
+ {
+	 for (int j = 1 ; j <= m; j++ ) --- O(m)
+	 {
+		 cout<<element; 
+	 } 
+}
+for (int j = 1 ; j <= m; j++ ) ----m
+{
+	cout<<element;
+}
+
+Case 4 Tc -- O(log(n))
+
+int n;
+cin>>n;
+int a = 0; i=n;
+while(i>=1){
+	a+=1;
+	i/=2;// here observstion is loop itertes 2^something <=n;
+	example = n=4, 4  = 2^2...loop iterates 2 times.
+	n = 64 - 2^5 ---- 5 times
+	n = 100 --- 2^6 = 64 and 2^7 = 128(Greater than 100)...loop will iterate 6 times
+}
+Generalising - loop goes till - n/(2^k) >= 1'; ==> K(log(2)) <= log (n)
+==> Tc - O(log(n))
+
+Case 5 - n*(n(n+1))/2
+
+for (int i = 1; i <=n; i++) ----n
+{
+	for(int j = 1; j <=i, j++) - 1,2,3,4..n = (n(n+1))/2
+	{
+		cout<<"%";
+	}
+}
+Case 6 - O(n*(n(log(n))))
+for (int i = 1; i <=n, i++) ---- n
+{
+	for (int j = 1; j<=n; j+=i)
+	// i=1---n//
+	// i = 2, j = 1,3,5,7---n/2
+	// i=3, j = 1,4,7,10-----n/3
+	// i =n , j= 1----1
+	so O() due to innner loop  = n + n/2 +n/3 +....+1
+	= n(log(n)) // upper statement is just expa
+	{
+		cout<<"%";
+	}
+}
+
+*/
