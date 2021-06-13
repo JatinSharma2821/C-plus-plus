@@ -1,0 +1,80 @@
+Stack - Automatically stores order of funtion called by callee
+example - in this code written below - 
+
+int sum(int a, int b)
+{
+	int c = a + b;
+	return c;
+}
+int main ()
+{
+	int a = 21;
+	int b = 28;
+	int c = sum(a,b);
+
+	return 0;
+
+
+}
+
+| sum   | 
+| main  |
+|  OS   |
+ Stack -
+   here OS-Operating System calls main(), main becomes active frame , main calls  sum() now sum becomes active frame
+
+
+ It follows Last in first out, means function that entered in last in Stack will be popped out first .
+sum will pop out first, then main, and then main() will handover the control to OS
+
+Issues with Stack - 
+1. Stack size is fixed means a limited no. of function can be present in stack at a time. If we try to add functions above that limit, we will come across compile error called Stackoverflow
+2. Stack automatically allocates and deallocates memory to variable .
+3. At compile time, system needs to know how much  memory needs to be allocated for each variables
+ and during run time , if variables are in stack , memory cannot be reallocated/allocated.
+ cannot be accesed too so they act as local variable
+
+So, to deal with issues ,  Heap comes into play
+
+--------------------------------------------------------------------------------------------------------------------
+
+Heap - 
+Heap is sort of next gen of Stack with some different point 
+
+
+int main()
+{
+	int a = 10;
+
+	int *p = new int() // allocated memory manually using pointer
+	*p = 200 // here pointer p will be in stack but will point towards 200 in Heap
+
+	delete(p);//manually deallocated memory assigned earlier 
+	// Even after deleting memory, pointer will still point towards to previous address 
+	// Such pointer pointing to an address that is not allocated to any variable is called Dangling Pointer.
+	Dangling Pointer is just wastage o f resouce so to preve this -
+		1) Either realloacte memory 
+		2) or delete the variable from stack too
+
+	To  remove any kind of pointer used , lets say we used ponter named as p.So,
+		p = null; // it removes the pointer
+	 
+
+}
+1. Dynamic Size - Expandable as max as sze of virtual disk on machine
+2. Allocate and Deallocate memory manually using new operator, delete operator respectively with the help of pointer
+    Memory of variables can be accesed during runtime by just using address of variable
+	So, they act as Global variable.
+
+	
+	
+3. During runtime, size of array can be changed bcz in Heap at time of compilation , knowing size is not required 
+
+
+
+Q - Why do we care about dealloacting memory in Heap whilst not in Stack?
+  - Bcz in Stack deallocation happens automatically whilst in Heap ,it has to be done manually.
+    If left with dealloacting, it will lead to situation of Memory league
+
+	Memory league is a serious thing and refers to allocating memory but not using it, such programs never terminate.
+
