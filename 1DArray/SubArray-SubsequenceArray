@@ -1,0 +1,16 @@
+
+Array - 1 2 5 6 7 8 9 10
+
+
+Subarray - Continous part of array ---- 2 5 6 7 --- 1 2 5 ---- 7 8 9--- and so on remmeber Continous part of array.
+No. of Subarray = nC2 + n;
+
+
+Subsequence ---- Sequence  derived from array made by selecting elements form array without diturbing original order of remianing elements.
+No. of Subsequence = 2**n;
+example --  
+			1   5 6     9   ---- remianing elements in original order
+			  2     7 8   10 --- Subsequence
+
+
+"Every Subarray is Subsequence but Every Subsequence is not Subarray"
